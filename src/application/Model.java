@@ -10,6 +10,7 @@ import org.jgrapht.UndirectedGraph;
 import org.jgrapht.alg.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
+import org.jgrapht.traverse.BreadthFirstIterator;
 
 import bean.Country;
 import db.DBConnect;
@@ -45,6 +46,30 @@ public class Model {
 		}
 		System.out.println(grafo.toString());
 	}
+	
+	public UndirectedGraph<Country, DefaultEdge> getGrafo(){
+		return grafo;
+	}
+	
+	//calcolo le componenti connesse
+	//so : calcolo i connessi: == trovo tutti i connessi
+
+	public List<Country> getTrovoConnessi(Country c ){          //calcolo tutti gli stati raggiungibili da c  
+		List<Country> connessi= new LinkedList<Country>();
+		BreadthFirstIterator<Country, DefaultEdge> visita = new BreadthFirstIterator<Country, DefaultEdge>(this.grafo, c);
+		while(visita.hasNext()){
+			Country c1 = visita.next();
+			connessi.add(c1);
+			
+		}
+		return connessi;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	public List<Country> calcolaPercorso(Country c1 , Country c2){

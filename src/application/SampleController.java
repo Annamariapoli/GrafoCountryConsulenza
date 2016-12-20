@@ -38,7 +38,7 @@ public class SampleController {
     private TextArea txtResult;
 
     @FXML
-    void doCompute(ActionEvent event) {
+    void doCompute(ActionEvent event) {   //cammino tra 2 stati e visualizzo gli stati x i quali devo passare
     	txtResult.clear();
     	Country c1 = comboStart.getValue();
     	Country c2 = comboEnd.getValue();
